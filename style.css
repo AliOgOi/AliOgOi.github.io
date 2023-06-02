@@ -1,0 +1,22 @@
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-image: url('/img/seg.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+body.loaded .fade-in {
+  opacity: 1;
+}
