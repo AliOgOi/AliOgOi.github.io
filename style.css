@@ -1,7 +1,9 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-image: url("https://th.bing.com/th/id/R.f90aff5620395aa7d52cba5caa8ef935?rik=kd8OF73gaWANkQ&riu=http%3a%2f%2fkaleoz-media.oss-ap-southeast-1.aliyuncs.com%2fkaleoz-store%2f202209%2foss-35c166a21b19ade324634bb12a1932a7.jpg&ehk=nf%2bkOzLxp0ZOaaSKd3v8i8i6pLHpepu8ZpvZEncV49g%3d&risl=&pid=ImgRaw&r=0");
+  background-size: cover;
+  background-position: center;
 }
+
 
 p {
   color: #333;
