@@ -26,11 +26,18 @@
             display: flex;
             justify-content: space-between;
             padding: 10px 20px;
+            box-sizing: border-box;
         }
+
+        /* Phần menu 3 gạch */
         .menu-toggle {
             cursor: pointer;
-            font-size: 20px;
+            font-size: 30px; /* Tăng kích thước của biểu tượng */
+            color: white;
+            display: block;
         }
+
+        /* Lựa chọn menu ẩn */
         .menu ul {
             list-style-type: none;
             margin: 0;
@@ -43,17 +50,22 @@
             width: 100%;
             text-align: center;
         }
+
         .menu ul li {
             padding: 10px 0;
         }
+
         .menu ul li a {
             color: white;
             text-decoration: none;
             font-size: 18px;
         }
+
         .menu ul li a:hover {
             text-decoration: underline;
         }
+
+        /* Hiển thị menu khi hover hoặc active */
         .menu:hover ul,
         .menu ul.active {
             display: block;
@@ -79,6 +91,7 @@
             border: none;
             cursor: pointer;
         }
+
         #toggle-music:hover {
             background-color: #555;
         }
