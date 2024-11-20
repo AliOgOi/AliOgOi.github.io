@@ -1,22 +1,119 @@
+/* Cơ bản */
 body {
-  font-family: 'Roboto', Arial, sans-serif;
-  background-image: url('/img/seg.jpg');
-  background-size: cover;
-  background-position: center;
-  filter: blur(10px);
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-body.loaded {
-  opacity: 1;
+/* Menu */
+.menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu .menu-toggle {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.menu ul {
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul.active {
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #444;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu ul li {
+    padding: 10px 0;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.menu ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Tên mục chính */
+.section-title {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Nội dung */
+.section {
+    padding: 20px;
 }
 
 .fade-in {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+    animation: fadeIn 1s ease-in;
 }
 
-body.loaded .fade-in {
-  opacity: 1;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card phong cách cho danh sách phần mềm */
+.card {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.card p {
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
 }
