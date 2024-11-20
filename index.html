@@ -5,84 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hồ Sơ Cá Nhân</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Cơ bản */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
+<audio id="background-music" loop>
+    <source src="background-music.mp3" type="audio/mpeg">
+</audio>
+<button id="toggle-music">Tắt nhạc</button>
 
-        /* Menu */
-        .menu {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-        .menu-toggle {
-            cursor: pointer;
-            font-size: 20px;
-        }
-        .menu ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: none;
-            position: absolute;
-            top: 50px;
-            left: 0;
-            background-color: #444;
-            width: 100%;
-            text-align: center;
-        }
-        .menu ul li {
-            padding: 10px 0;
-        }
-        .menu ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        .menu ul li a:hover {
-            text-decoration: underline;
-        }
-        .menu:hover ul,
-        .menu ul.active {
-            display: block;
-        }
 
-        /* Nội dung */
-        .section {
-            padding: 20px;
-            display: none;
-        }
-        .section.active {
-            display: block;
-        }
-
-        /* Nhạc */
-        #toggle-music {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        #toggle-music:hover {
-            background-color: #555;
-        }
-    </style>
 </head>
 <body>
     <!-- Menu -->
@@ -98,13 +26,30 @@
     <!-- Phần Giới Thiệu -->
     <div id="about" class="section active">
         <h2 class="section-title">Giới Thiệu</h2>
-        <p>Xin chào! Tôi là một lập trình viên đam mê học hỏi công nghệ và sáng tạo.</p>
+        <p class="fade-in center">Xin chào! Tôi là một lập trình viên đam mê học hỏi công nghệ và sáng tạo.</p>
+        <h3 class="center">Phần mềm tôi đang sử dụng:</h3><!-- Nhạc nền -->
+    </div>
+
+        <div class="center">
+            <div class="card">
+                <img src="https://skillicons.dev/icons?i=vscode" alt="VS Code">
+                <p>Visual Studio Code</p>
+            </div>
+            <div class="card">
+                <img src="https://skillicons.dev/icons?i=idea" alt="IntelliJ IDEA">
+                <p>IntelliJ IDEA</p>
+            </div>
+            <div class="card">
+                <img src="https://skillicons.dev/icons?i=visualstudio" alt="Visual Studio">
+                <p>Visual Studio</p>
+            </div>
+        </div>
     </div>
 
     <!-- Phần Giới Thiệu Bản Thân -->
-    <div id="profile" class="section">
+    <div id="profile" class="section" style="display: none;">
         <h2 class="section-title">Giới Thiệu Bản Thân Tôi</h2>
-        <p>
+        <p class="fade-in center">
             ✉️ Bạn có thể liên hệ tại <a href="mailto:nguyntin2808@gmail.com">Đây</a><br>
             🧠 Tôi đang học Javascript, Python, C++<br>
             🤝 Kết nối với tôi trên Discord: **lifeisnotdaijoubu**<br>
@@ -114,58 +59,18 @@
     </div>
 
     <!-- Phần Thành Tựu -->
-    <div id="achievements" class="section">
+    <div id="achievements" class="section" style="display: none;">
         <h2 class="section-title">Thành Tựu</h2>
-        <p>Đây là một số thành tựu tôi đã đạt được:</p>
-        <a href="https://github.com/AliOgOi">
-            <img src="https://github-readme-stats.vercel.app/api?username=AliOgOi&theme=radical" alt="GitHub Stats">
-        </a>
+        <div class="center">
+            <a href="https://github.com/AliOgOi">
+                <img src="https://github-readme-stats.vercel.app/api?username=AliOgOi&theme=radical" alt="GitHub Stats">
+            </a>
+            <a href="https://github.com/AliOgOi">
+                <img src="https://github-readme-streak-stats.herokuapp.com/?user=AliOgOi&stroke=64748b&background=171717&ring=64748b&fire=64748b&currStreakNum=64748b&currStreakLabel=64748b&sideNums=64748b&sideLabels=64748b&dates=64748b&hide_border=true" alt="GitHub Streak">
+            </a>
+        </div>
     </div>
 
-    <!-- Nhạc Nền -->
-    <audio id="background-music" loop>
-        <source src="background-music.mp3" type="audio/mpeg">
-        Trình duyệt của bạn không hỗ trợ âm thanh.
-    </audio>
-    <button id="toggle-music">Tắt nhạc</button>
-
-    <script>
-        // Điều khiển hiển thị menu
-        const menuToggle = document.querySelector('.menu-toggle');
-        const menuList = document.querySelector('.menu ul');
-        const sections = document.querySelectorAll('.section');
-
-        menuToggle.addEventListener('click', () => {
-            menuList.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.menu ul li a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = e.target.getAttribute('data-target');
-
-                // Hiển thị phần tương ứng
-                sections.forEach(section => section.classList.remove('active'));
-                document.getElementById(target).classList.add('active');
-
-                // Đóng menu
-                menuList.classList.remove('active');
-            });
-        });
-
-        // Điều khiển nhạc nền
-        const music = document.getElementById('background-music');
-        const toggleMusicButton = document.getElementById('toggle-music');
-
-        toggleMusicButton.addEventListener('click', () => {
-            if (music.paused) {
-                music.play();
-                toggleMusicButton.textContent = 'Tắt nhạc';
-            } else {
-                music.pause();
-                toggleMusicButton.textContent = 'Bật nhạc';
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
