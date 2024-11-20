@@ -1,6 +1,6 @@
 /* Cơ bản */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     background-color: #f4f4f9;
     color: #333;
@@ -17,7 +17,6 @@ body {
     padding: 10px 20px;
     color: white;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .menu .menu-toggle {
@@ -40,7 +39,6 @@ body {
     background-color: #444;
     width: 100%;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .menu ul li {
@@ -57,19 +55,16 @@ body {
     text-decoration: underline;
 }
 
-/* Tên mục chính */
+/* Nội dung */
+.section {
+    padding: 20px;
+}
+
 .section-title {
     background-color: #333;
     color: white;
     padding: 10px 20px;
     text-align: center;
-    margin: 0;
-    font-size: 24px;
-}
-
-/* Nội dung */
-.section {
-    padding: 20px;
 }
 
 .fade-in {
@@ -77,17 +72,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* Card phong cách cho danh sách phần mềm */
+.center {
+    text-align: center;
+}
+
+/* Card phong cách */
 .card {
     display: inline-block;
     margin: 10px;
