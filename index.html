@@ -48,7 +48,7 @@
         }
 
         /* Phần nội dung */
-        #game, #about, #profile, #achievements {
+        #about, #profile, #achievements {
             padding: 20px;
         }
 
@@ -67,19 +67,6 @@
             to {
                 opacity: 1;
             }
-        }
-
-        /* Game */
-        #game-over {
-            display: none;
-            font-size: 20px;
-            font-weight: bold;
-            color: red;
-        }
-
-        .game-controls {
-            text-align: center;
-            padding: 10px;
         }
 
         /* Hiệu ứng chuyển đổi giữa các tab */
@@ -109,7 +96,6 @@
             <li><a href="#" data-target="about">Giới thiệu</a></li>
             <li><a href="#" data-target="profile">Về Bản Thân Tôi</a></li>
             <li><a href="#" data-target="achievements">Thành tựu</a></li>
-            <li><a href="#" data-target="game">Game Rắn Săn Mồi</a></li>
         </ul>
     </div>
 
@@ -120,18 +106,16 @@
         <div class="tab-content" id="tab3">Thành tựu</div>
     </div>
 
-    <!-- Phần Game -->
-    <div id="game" class="section" style="display: none;">
-        <h2>Game Rắn Săn Mồi</h2>
-        <p>Điểm số: <span id="score">0</span></p>
-        <div class="game-controls">
-            <button id="start-button">Bắt Đầu Game</button>
-            <button id="stop-button" style="display: none;">Dừng Game</button>
-        </div>
-        <div id="game-over" class="center">
-            Game Over! Điểm của bạn là: <span id="final-score">0</span><br>
-            <button onclick="restartGame()">Chơi lại</button>
-        </div>
+    <!-- Phần Giới thiệu -->
+    <div id="about" class="section" style="display: none;">
+        <h2>Giới thiệu</h2>
+        <p>Xin chào! Tôi là một người đam mê công nghệ và sáng tạo. Tôi yêu thích học hỏi và chia sẻ kiến thức.</p>
+    </div>
+
+    <!-- Phần Về Bản Thân Tôi -->
+    <div id="profile" class="section" style="display: none;">
+        <h2>Về Bản Thân Tôi</h2>
+        <p>Tên tôi là Ali OgOi, tôi là một sinh viên đam mê lập trình và công nghệ. Hiện tôi đang theo học tại trường Đại học ABC.</p>
     </div>
 
     <!-- Phần Thành Tựu -->
@@ -154,10 +138,6 @@
     </div>
 
     <script>
-        let gameInterval;
-        let score = 0;
-        let gameRunning = false;
-
         // Xử lý menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const menuList = document.querySelector('.menu ul');
@@ -179,37 +159,6 @@
                 document.getElementById(target).style.display = 'block';
             });
         });
-
-        // Game Logic
-        function startGame() {
-            score = 0;
-            document.getElementById('score').textContent = score;
-            gameRunning = true;
-            document.getElementById('start-button').style.display = 'none';
-            document.getElementById('stop-button').style.display = 'inline-block';
-
-            gameInterval = setInterval(() => {
-                if (gameRunning) {
-                    score += 10; // Tăng điểm giả lập
-                    document.getElementById('score').textContent = score;
-                }
-            }, 1000); // Tăng điểm mỗi giây
-        }
-
-        function stopGame() {
-            gameRunning = false;
-            clearInterval(gameInterval);
-            document.getElementById('game-over').style.display = 'block';
-            document.getElementById('final-score').textContent = score;
-        }
-
-        function restartGame() {
-            document.getElementById('game-over').style.display = 'none';
-            startGame();
-        }
-
-        document.getElementById('start-button').addEventListener('click', startGame);
-        document.getElementById('stop-button').addEventListener('click', stopGame);
 
         // Hiệu ứng chạy qua lại cho các tab
         let tabs = document.querySelectorAll('.tab-content');
