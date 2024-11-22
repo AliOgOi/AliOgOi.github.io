@@ -14,30 +14,30 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-        }
-
-        /* Font chữ riêng cho tiêu đề */
-        h1, h2, h3 {
-            font-family: 'Lora', serif;
-            font-style: italic;
+            background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center fixed;
+            background-size: cover;
         }
 
         /* CSS cho phần menu */
         .menu {
-            font-family: 'Courier New', monospace;
-            background-color: #f4f4f4;
-            padding: 10px;
-            border-bottom: 2px solid #ddd;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px 20px;
+            z-index: 1000;
         }
 
         .menu ul {
             list-style-type: none;
             padding: 0;
-            display: none; /* Ẩn menu ban đầu */
+            display: none;
         }
 
         .menu ul.active {
-            display: block; /* Hiện menu khi bấm toggle */
+            display: block;
         }
 
         .menu ul li {
@@ -46,21 +46,31 @@
 
         .menu ul li a {
             text-decoration: none;
-            color: #333;
+            color: #fff;
             font-weight: bold;
         }
 
-        /* CSS cho từng phần nội dung */
-        #about, #profile, #achievements {
-            padding: 20px;
+        .menu-toggle {
+            font-size: 24px;
+            cursor: pointer;
         }
 
-        .center {
+        /* Hiển thị phần nội dung */
+        .section {
+            margin-top: 100px;
+            padding: 20px;
+            display: none;
+        }
+
+        #intro {
+            display: block;
             text-align: center;
+            padding: 50px;
+            animation: fadeIn 3s;
         }
 
         .fade-in {
-            animation: fadeIn 2s;
+            animation: fadeIn 2s ease-in;
         }
 
         @keyframes fadeIn {
@@ -72,25 +82,28 @@
             }
         }
 
-        /* Ẩn phần điểm số ban đầu */
-        .hidden-score {
-            display: none;
+        /* CSS cho phần game rắn săn mồi */
+        canvas {
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #fff;
         }
 
-        /* Hiện phần điểm số khi hover */
+        /* CSS cho phần Thành Tựu */
         .score-wrapper:hover .hidden-score,
         .score-wrapper:active .hidden-score {
-            display: inline; /* Hiển thị phần điểm khi hover hoặc click */
+            display: inline;
         }
 
-        /* Làm nổi bật phần điểm khi hiện */
         .hidden-score {
             font-weight: bold;
             color: #d9534f;
         }
+
     </style>
 </head>
 <body>
+
     <!-- Menu -->
     <div class="menu">
         <div class="menu-toggle">☰</div>
@@ -98,17 +111,32 @@
             <li><a href="#" data-target="about">Giới thiệu</a></li>
             <li><a href="#" data-target="profile">Về Bản Thân Tôi</a></li>
             <li><a href="#" data-target="achievements">Thành tựu</a></li>
+            <li><a href="#" data-target="teacherDay">Chào mừng Ngày Nhà Giáo</a></li>
         </ul>
     </div>
 
-    <!-- Phần Thành Tựu -->
+    <!-- Giao diện chờ -->
+    <div id="intro" class="section">
+        <h1 class="fade-in">Chào mừng bạn đến với Hồ Sơ Cá Nhân!</h1>
+        <h2 id="dynamic-section" class="fade-in">Giới thiệu</h2>
+        <p class="fade-in center">Dành vài giây để khám phá trang web.</p>
+    </div>
+
+    <!-- Các phần khác -->
+    <div id="about" class="section" style="display: none;">
+        <h2>Giới thiệu</h2>
+        <p>Hồ sơ cá nhân của tôi với các thông tin quan trọng và dự án.</p>
+    </div>
+    <div id="profile" class="section" style="display: none;">
+        <h2>Về Bản Thân Tôi</h2>
+        <p>Lập trình viên yêu thích học hỏi, khám phá công nghệ.</p>
+    </div>
     <div id="achievements" class="section" style="display: none;">
-        <h2 class="section-title">Thành Tựu</h2>
-        <p class="fade-in center">6/1/2024: Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
+        <h2>Thành tựu</h2>
+        <p>Thi HSG cấp Tỉnh môn Tin Học. Điểm đạt: <b>5.25</b></p>
         
-        <!-- Điểm số được ẩn -->
-        <p class="fade-in center score-wrapper">
-            Đạt Được <span class="hidden-score">5.25 điểm</span>.
+        <p class="score-wrapper">
+            Đạt được <span class="hidden-score">5.25 điểm</span>.
         </p>
 
         <div class="center">
@@ -121,6 +149,14 @@
         </div>
     </div>
 
+    <!-- Phần mini-game Ngày Nhà Giáo -->
+    <div id="teacherDay" class="section" style="display: none;">
+        <h1>Chúc Mừng Ngày Nhà Giáo Việt Nam!</h1>
+        <p>Hãy thư giãn một chút với trò chơi Rắn Săn Mồi!</p>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <script src="snake-game.js"></script>
+    </div>
+
     <script>
         // Xử lý menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
@@ -131,6 +167,17 @@
             menuList.classList.toggle('active');
         });
 
+        // Chuyển giữa các phần nội dung tự động
+        const sectionNames = ['Giới thiệu', 'Về Bản Thân Tôi', 'Thành tựu'];
+        const dynamicSection = document.getElementById('dynamic-section');
+        let index = 0;
+
+        setInterval(() => {
+            dynamicSection.textContent = sectionNames[index];
+            index = (index + 1) % sectionNames.length;
+        }, 5000);
+
+        // Hiển thị nội dung khi chọn menu
         document.querySelectorAll('.menu ul li a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -139,10 +186,11 @@
                 // Ẩn tất cả các nội dung
                 sections.forEach(section => section.style.display = 'none');
 
-                // Hiện nội dung được chọn
+                // Hiển thị phần nội dung được chọn
                 document.getElementById(target).style.display = 'block';
             });
         });
     </script>
+
 </body>
 </html>
