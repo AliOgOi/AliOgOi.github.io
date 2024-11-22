@@ -18,7 +18,7 @@
             background-size: cover;
         }
 
-        /* CSS cho phần menu */
+        /* Menu */
         .menu {
             position: fixed;
             top: 0;
@@ -55,7 +55,7 @@
             cursor: pointer;
         }
 
-        /* Hiển thị phần nội dung */
+        /* CSS cho các phần nội dung */
         .section {
             margin-top: 100px;
             padding: 20px;
@@ -64,6 +64,7 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         }
 
+        /* Hiệu ứng chuyển các tab mỗi 5 giây */
         #intro {
             display: block;
             text-align: center;
@@ -85,7 +86,7 @@
             }
         }
 
-        /* CSS cho phần game rắn săn mồi */
+        /* Phần game rắn săn mồi */
         canvas {
             display: block;
             margin: 20px auto;
@@ -96,13 +97,19 @@
             text-align: center;
         }
 
-        /* Phần Ngày Nhà Giáo (mini-game) sẽ là một phần phụ */
-        #teacherDay {
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
+        /* Các phần nội dung khác với background */
+        #about {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        #profile {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+        #achievements {
+            background: rgba(245, 245, 245, 0.8);
         }
 
-        /* Nút bắt đầu game */
+        /* Nút Bắt Đầu và Dừng Game */
         .start-button {
             background-color: #28a745;
             color: #fff;
@@ -117,17 +124,26 @@
             background-color: #218838;
         }
 
-        /* Các phần nội dung khác với background */
-        #about {
-            background: rgba(255, 255, 255, 0.8);
+        .stop-button {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        #profile {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
+
+        .stop-button:hover {
+            background-color: #c82333;
         }
-        #achievements {
-            background: rgba(245, 245, 245, 0.8);
+
+        /* Các hiệu ứng chuyển tab */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
+
     </style>
 </head>
 <body>
@@ -152,29 +168,16 @@
 
     <!-- Các phần khác -->
     <div id="about" class="section" style="display: none;">
-        <h2>Giới thiệu</h2>
+        <h2 class="section-title">Giới thiệu</h2>
         <p>Hồ sơ cá nhân của tôi với các thông tin quan trọng và dự án.</p>
     </div>
     <div id="profile" class="section" style="display: none;">
-        <h2>Về Bản Thân Tôi</h2>
+        <h2 class="section-title">Về Bản Thân Tôi</h2>
         <p>Lập trình viên yêu thích học hỏi, khám phá công nghệ.</p>
     </div>
     <div id="achievements" class="section" style="display: none;">
-        <h2>Thành tựu</h2>
+        <h2 class="section-title">Thành tựu</h2>
         <p>Thi HSG cấp Tỉnh môn Tin Học. Điểm đạt: <b>5.25</b></p>
-        
-        <p class="score-wrapper">
-            Đạt được <span class="hidden-score">5.25 điểm</span>.
-        </p>
-
-        <div class="center">
-            <a href="https://github.com/AliOgOi">
-                <img src="https://github-readme-stats.vercel.app/api?username=AliOgOi&theme=radical" alt="GitHub Stats">
-            </a>
-            <a href="https://github.com/AliOgOi">
-                <img src="https://github-readme-streak-stats.herokuapp.com/?user=AliOgOi&stroke=64748b&background=171717&ring=64748b&fire=64748b&currStreakNum=64748b&currStreakLabel=64748b&sideNums=64748b&sideLabels=64748b&dates=64748b&hide_border=true" alt="GitHub Streak">
-            </a>
-        </div>
     </div>
 
     <!-- Phần Ngày Nhà Giáo Việt Nam (Mini-game) -->
@@ -183,6 +186,8 @@
         <div class="center">
             <p>Hãy thư giãn một chút với trò chơi Rắn Săn Mồi!</p>
             <button class="start-button" onclick="startGame()">Bắt đầu Game</button>
+            <button class="stop-button" id="stopButton" style="display:none;" onclick="stopGame()">Dừng Game</button>
+            <p id="gameOverText" style="display:none;"></p>
             <canvas id="gameCanvas" width="400" height="400"></canvas>
         </div>
         <script src="snake-game.js"></script>
@@ -217,18 +222,45 @@
                 // Ẩn tất cả các nội dung
                 sections.forEach(section => section.style.display = 'none');
 
-                // Hiển thị phần nội dung được chọn
+                // Hiện nội dung được chọn
                 document.getElementById(target).style.display = 'block';
             });
         });
 
-        // Hàm bắt đầu game
+        // Game logic
+        let gameRunning = false;
+        let gameInterval;
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
         function startGame() {
-            const gameCanvas = document.getElementById('gameCanvas');
-            // Gọi script mini-game rắn săn mồi ở đây
-            console.log('Game bắt đầu');
-            // Bắt đầu trò chơi rắn săn mồi trong gameCanvas
-            startSnakeGame(gameCanvas); // Giả sử startSnakeGame là hàm khởi tạo game của bạn
+            document.querySelector('.start-button').style.display = 'none';
+            document.querySelector('.stop-button').style.display = 'inline-block';
+            document.getElementById('gameOverText').style.display = 'none';
+            
+            gameRunning = true;
+            gameInterval = setInterval(() => {
+                // Game logic here
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // Continue snake game render
+            }, 100);
+
+            // Show game over when finished
+            setTimeout(() => {
+                if (gameRunning) {
+                    gameRunning = false;
+                    clearInterval(gameInterval);
+                    document.getElementById('gameOverText').textContent = "Game Over! Điểm số của bạn: 100";
+                    document.getElementById('gameOverText').style.display = 'block';
+                }
+            }, 10000); // End game after 10 seconds for demo
+        }
+
+        function stopGame() {
+            gameRunning = false;
+            clearInterval(gameInterval);
+            document.querySelector('.start-button').style.display = 'inline-block';
+            document.querySelector('.stop-button').style.display = 'none';
         }
     </script>
 
