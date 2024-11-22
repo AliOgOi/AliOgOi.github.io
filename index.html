@@ -4,7 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hồ Sơ Cá Nhân</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Nhúng Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lora:ital@1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Font chữ mặc định */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Font chữ riêng cho tiêu đề */
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+            font-style: italic;
+        }
+
+        /* CSS cho phần menu */
+        .menu {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            display: none; /* Ẩn menu ban đầu */
+        }
+
+        .menu ul.active {
+            display: block; /* Hiện menu khi bấm toggle */
+        }
+
+        .menu ul li {
+            margin: 5px 0;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* CSS cho từng phần nội dung */
+        #about, #profile, #achievements {
+            padding: 20px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .fade-in {
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Ẩn phần điểm số ban đầu */
+        .hidden-score {
+            display: none;
+        }
+
+        /* Hiện phần điểm số khi hover */
+        .score-wrapper:hover .hidden-score,
+        .score-wrapper:active .hidden-score {
+            display: inline; /* Hiển thị phần điểm khi hover hoặc click */
+        }
+
+        /* Làm nổi bật phần điểm khi hiện */
+        .hidden-score {
+            font-weight: bold;
+            color: #d9534f;
+        }
+    </style>
 </head>
 <body>
     <!-- Menu -->
@@ -17,47 +101,15 @@
         </ul>
     </div>
 
-    <!-- Phần Giới Thiệu -->
-    <div id="about" class="section active">
-        <h2 class="section-title">Giới Thiệu</h2>
-        <p class="fade-in center"> Mọi việc đều được hoàn thành từ những hành động nhỏ nhất!.</p>
-        <h3 class="center">Phần mềm tôi đang sử dụng:</h3>
-        <div class="center">
-            <div class="card">
-                <img src="https://skillicons.dev/icons?i=vscode" alt="VS Code">
-                <p>Visual Studio Code</p>
-            </div>
-            <div class="card">
-                <img src="https://skillicons.dev/icons?i=idea" alt="IntelliJ IDEA">
-                <p>IntelliJ IDEA</p>
-            </div>
-            <div class="card">
-                <img src="https://skillicons.dev/icons?i=visualstudio" alt="Visual Studio">
-                <p>Visual Studio</p>
-                    <p class="fade-in center">Xin chào! Tôi là một lập trình viên đam mê học hỏi công nghệ và sáng tạo.</p>
-            ✉️ Bạn có thể liên hệ tại <a href="mailto:nguyntin2808@gmail.com">Đây</a><br>
-            🧠 Tôi đang học Javascript, Python, C++<br>
-            🤝 Kết nối với tôi trên Discord: **lifeisnotdaijoubu**<br>
-            🎉 <a href="https://linktr.ee/TienNguyennnm/">LinkTree</a><br>
-            🫧 Hoặc <a href="https://www.facebook.com/anhhhtienn/">Facebook</a>.
-        </p>
-            </div>
-        </div>
-    </div>
-    <div id="profile" class="section" style="display: none;">
-        <h2 class="section-title">Về Bản Thân Tôi</h2>
-        <p class="fade-in center">Xin chào! Tôi là một lập trình viên đam mê học hỏi công nghệ và sáng tạo.</p>
-            ✉️ Bạn có thể liên hệ tại <a href="mailto:nguyntin2808@gmail.com">Đây</a><br>
-            🧠 Tôi đang học Javascript, Python, C++<br>
-            🤝 Kết nối với tôi trên Discord: **lifeisnotdaijoubu**<br>
-            🎉 <a href="https://linktr.ee/TienNguyennnm/">LinkTree</a><br>
-            🫧 Hoặc <a href="https://www.facebook.com/anhhhtienn/">Facebook</a>.
-        </p>
-    </div>
+    <!-- Phần Thành Tựu -->
     <div id="achievements" class="section" style="display: none;">
         <h2 class="section-title">Thành Tựu</h2>
-        <p class="fade-in center">6/1/2024 : Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa .</p>
-        <p class="fade-in center">Đạt Được 5.25d.</p>
+        <p class="fade-in center">6/1/2024: Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
+        
+        <!-- Điểm số được ẩn -->
+        <p class="fade-in center score-wrapper">
+            Đạt Được <span class="hidden-score">5.25 điểm</span>.
+        </p>
 
         <div class="center">
             <a href="https://github.com/AliOgOi">
@@ -68,6 +120,29 @@
             </a>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Xử lý menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuList = document.querySelector('.menu ul');
+        const sections = document.querySelectorAll('.section');
+
+        menuToggle.addEventListener('click', () => {
+            menuList.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.menu ul li a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = e.target.getAttribute('data-target');
+
+                // Ẩn tất cả các nội dung
+                sections.forEach(section => section.style.display = 'none');
+
+                // Hiện nội dung được chọn
+                document.getElementById(target).style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
