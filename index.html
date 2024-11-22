@@ -193,6 +193,37 @@
         .testimonial-card p {
             color: #666;
         }
+
+        /* Login Form */
+        .login-form {
+            background: #fff;
+            padding: 30px;
+            max-width: 400px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-form button {
+            background: #2b2d42;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background: #EF233C;
+        }
     </style>
 </head>
 <body>
@@ -208,16 +239,18 @@
         <div class="container">
             <h2 class="logo">AliOgOi</h2>
             <ul>
-                <li><a href="#about" class="smooth-scroll">Giới Thiệu</a></li>
-                <li><a href="#skills" class="smooth-scroll">Kỹ Năng</a></li>
-                <li><a href="#projects" class="smooth-scroll">Dự Án</a></li>
-                <li><a href="#testimonials" class="smooth-scroll">Đánh Giá</a></li>
+                <li><a href="#about">Giới Thiệu</a></li>
+                <li><a href="#skills">Kỹ Năng</a></li>
+                <li><a href="#projects">Dự Án</a></li>
+                <li><a href="#achievements">Thành Tựu</a></li>
+                <li><a href="#testimonials">Đánh Giá</a></li>
+                <li><a href="#login">Đăng Nhập</a></li>
             </ul>
         </div>
     </div>
 
     <!-- About Section -->
-    <section id="about" class="fade-in">
+    <section id="about">
         <div class="container">
             <h2 class="section-title">Giới Thiệu</h2>
             <div class="content">
@@ -228,61 +261,49 @@
                     <p>🧠 Tôi Đang Học: Js, Python, C++, AI.</p>
                     <p>🤝 Liên Hệ Với Tôi Tại: lifeisnotdaijoubu</p>
                     <p>🫧 Nếu Bạn Muốn Biết Thêm, Nhấp Vào Đây: <a href="https://AliOgOi.github.io">AliOgOi.github.io</a></p>
-                    <p>🫧 Hoặc nếu có thắc mắc gì hãy liên hệ tại: <a href="https://www.facebook.com/anhhhtienn/">Facebook của tôi</a></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="fade-in">
+    <!-- Achievements Section -->
+    <section id="achievements">
         <div class="container">
-            <h2 class="section-title">Ngôn Ngữ Lập Trình</h2>
-            <div class="skills">
-                <img src="https://skillicons.dev/icons?i=nodejs,js,cpp,bots,ai&perline=6" alt="Programming Languages">
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="fade-in">
-        <div class="container">
-            <h2 class="section-title">Dự Án</h2>
+            <h2 class="section-title">Thành Tựu</h2>
             <div class="content">
                 <div class="card">
-                    <h3>Thành Tích</h3>
-                    <p>6/1/2024: Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa. Đạt được 5.25 điểm.</p>
-                    <a href="https://github.com/AliOgOi/botchatmessenger">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GitHub Stats Section -->
-    <section id="github-stats" class="fade-in">
-        <div class="container">
-            <h2 class="section-title">GitHub Stats</h2>
-            <div class="content">
-                <div class="card">
-                    <a href="https://github.com/AliOgOi">
-                        <img src="https://github-readme-stats.vercel.app/api?username=AliOgOi&show_icons=true&theme=tokyonight" alt="GitHub Stats">
-                    </a>
+                    <h3>6/1/2024: Thi HSG cấp Tỉnh môn Tin Học</h3>
+                    <p>Tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa. Đạt được 5.25 điểm.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="fade-in testimonials">
+    <section id="testimonials">
         <div class="container">
             <h2 class="section-title">Đánh Giá</h2>
-            <div id="testimonial-list" class="testimonial-card">
-                <h3>Người Dùng 1</h3>
-                <p>"AliOgOi là một nhà phát triển tuyệt vời, giúp tôi giải quyết rất nhiều vấn đề trong công việc."</p>
+            <div class="content">
+                <div class="testimonial-card">
+                    <h3>Người Dùng 1</h3>
+                    <p>"AliOgOi là một nhà phát triển tuyệt vời, giúp tôi giải quyết rất nhiều vấn đề trong công việc."</p>
+                </div>
+                <div class="testimonial-card">
+                    <h3>Người Dùng 2</h3>
+                    <p>"Sản phẩm rất chất lượng và tôi luôn hài lòng khi làm việc với AliOgOi."</p>
+                </div>
             </div>
-            <div id="testimonial-list" class="testimonial-card">
-                <h3>Người Dùng 2</h3>
-                <p>"Sản phẩm rất chất lượng và tôi luôn hài lòng khi làm việc với AliOgOi."</p>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login">
+        <div class="container">
+            <h2 class="section-title">Đăng Nhập</h2>
+            <div class="login-form">
+                <input type="email" placeholder="Email" id="email">
+                <input type="password" placeholder="Mật khẩu" id="password">
+                <button onclick="login()">Đăng Nhập</button>
             </div>
         </div>
     </section>
@@ -291,5 +312,17 @@
     <footer>
         <p>2024 AliOgOi | <span class="footer-links"><a href="mailto:nguyntin2808@gmail.com">Email</a> | <a href="#">LinkedIn</a> | <a href="#">Twitter</a></span></p>
     </footer>
+
+    <script>
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            if (email && password) {
+                alert("Đăng nhập thành công!");
+            } else {
+                alert("Vui lòng điền đầy đủ thông tin!");
+            }
+        }
+    </script>
 </body>
 </html>
