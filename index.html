@@ -14,18 +14,15 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-        }
-
-        /* Font chữ riêng cho tiêu đề */
-        h1, h2, h3 {
-            font-family: 'Lora', serif;
-            font-style: italic;
+            background-image: url('https://your-image-url-here.com'); /* Thêm background cho toàn bộ trang */
+            background-size: cover;
+            background-position: center;
         }
 
         /* CSS cho phần menu */
         .menu {
             font-family: 'Courier New', monospace;
-            background-color: #f4f4f4;
+            background-color: rgba(255, 255, 255, 0.7); /* Đặt nền menu trong suốt */
             padding: 10px;
             border-bottom: 2px solid #ddd;
         }
@@ -50,7 +47,7 @@
             font-weight: bold;
         }
 
-        /* CSS cho từng phần nội dung */
+        /* Phần nội dung */
         #about, #profile, #achievements {
             padding: 20px;
         }
@@ -72,21 +69,22 @@
             }
         }
 
-        /* Ẩn phần điểm số ban đầu */
-        .hidden-score {
-            display: none;
+        /* Hiệu ứng chuyển đổi giữa các tab */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            font-size: 18px;
+            transition: all 1s ease;
         }
 
-        /* Hiện phần điểm số khi hover */
-        .score-wrapper:hover .hidden-score,
-        .score-wrapper:active .hidden-score {
-            display: inline; /* Hiển thị phần điểm khi hover hoặc click */
-        }
-
-        /* Làm nổi bật phần điểm khi hiện */
-        .hidden-score {
-            font-weight: bold;
-            color: #d9534f;
+        .tabs div {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin: 0 10px;
         }
     </style>
 </head>
@@ -101,12 +99,30 @@
         </ul>
     </div>
 
+    <!-- Phần Chuyển Tab (Hiệu ứng chạy qua lại) -->
+    <div class="tabs">
+        <div class="tab-content" id="tab1">Giới thiệu về tôi</div>
+        <div class="tab-content" id="tab2">Về Bản Thân Tôi</div>
+        <div class="tab-content" id="tab3">Thành tựu</div>
+    </div>
+
+    <!-- Phần Giới thiệu -->
+    <div id="about" class="section" style="display: none;">
+        <h2>Giới thiệu</h2>
+        <p>Xin chào! Tôi là một người đam mê công nghệ và sáng tạo. Tôi yêu thích học hỏi và chia sẻ kiến thức.</p>
+    </div>
+
+    <!-- Phần Về Bản Thân Tôi -->
+    <div id="profile" class="section" style="display: none;">
+        <h2>Về Bản Thân Tôi</h2>
+        <p>Tên tôi là Ali OgOi, tôi là một sinh viên đam mê lập trình và công nghệ. Hiện tôi đang theo học tại trường Đại học ABC.</p>
+    </div>
+
     <!-- Phần Thành Tựu -->
     <div id="achievements" class="section" style="display: none;">
         <h2 class="section-title">Thành Tựu</h2>
         <p class="fade-in center">6/1/2024: Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
         
-        <!-- Điểm số được ẩn -->
         <p class="fade-in center score-wrapper">
             Đạt Được <span class="hidden-score">5.25 điểm</span>.
         </p>
@@ -143,6 +159,15 @@
                 document.getElementById(target).style.display = 'block';
             });
         });
+
+        // Hiệu ứng chạy qua lại cho các tab
+        let tabs = document.querySelectorAll('.tab-content');
+        let tabIndex = 0;
+        setInterval(() => {
+            tabs.forEach(tab => tab.style.display = 'none'); // Ẩn tất cả tab
+            tabs[tabIndex].style.display = 'block'; // Hiển thị tab hiện tại
+            tabIndex = (tabIndex + 1) % tabs.length; // Di chuyển đến tab tiếp theo
+        }, 5000); // Chuyển mỗi 5 giây
     </script>
 </body>
 </html>
