@@ -7,22 +7,25 @@
 
     <!-- Nhúng Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lora:ital@1&display=swap" rel="stylesheet">
-
+    
     <style>
-        /* Font chữ mặc định */
+        /* Font chữ mặc định cho toàn trang */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://sr.yatta.moe/hsr/assets/UI/avatar/large/1006.sm.png?vh=2024090900'); /* Thêm background cho toàn bộ trang */
-            background-size: cover;
-            background-position: center;
         }
 
-        /* CSS cho phần menu */
+        /* Font chữ riêng cho tiêu đề */
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+            font-style: italic;
+        }
+
+        /* Font chữ cho menu */
         .menu {
             font-family: 'Courier New', monospace;
-            background-color: rgba(255, 255, 255, 0.7); /* Đặt nền menu trong suốt */
+            background-color: #f4f4f4;
             padding: 10px;
             border-bottom: 2px solid #ddd;
         }
@@ -34,7 +37,7 @@
         }
 
         .menu ul.active {
-            display: block; /* Hiện menu khi bấm toggle */
+            display: block; /* Hiện menu khi bấm nút toggle */
         }
 
         .menu ul li {
@@ -47,7 +50,7 @@
             font-weight: bold;
         }
 
-        /* Phần nội dung */
+        /* Font chữ cho từng phần nội dung */
         #about, #profile, #achievements {
             padding: 20px;
         }
@@ -68,24 +71,6 @@
                 opacity: 1;
             }
         }
-
-        /* Hiệu ứng chuyển đổi giữa các tab */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 300px;
-            font-size: 18px;
-            transition: all 1s ease;
-        }
-
-        .tabs div {
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            margin: 0 10px;
-        }
     </style>
 </head>
 <body>
@@ -99,34 +84,44 @@
         </ul>
     </div>
 
-    <!-- Phần Chuyển Tab (Hiệu ứng chạy qua lại) -->
-    <div class="tabs">
-        <div class="tab-content" id="tab1">Giới thiệu về tôi</div>
-        <div class="tab-content" id="tab2">Về Bản Thân Tôi</div>
-        <div class="tab-content" id="tab3">Thành tựu</div>
+    <!-- Phần Giới Thiệu -->
+    <div id="about" class="section active">
+        <h2 class="section-title">Giới Thiệu</h2>
+        <p class="fade-in center">Mọi việc đều được hoàn thành từ những hành động nhỏ nhất!</p>
+        <h3 class="center">Phần mềm tôi đang sử dụng:</h3>
+        <div class="center">
+            <div class="card">
+                <img src="https://skillicons.dev/icons?i=vscode" alt="VS Code">
+                <p>Visual Studio Code</p>
+            </div>
+            <div class="card">
+                <img src="https://skillicons.dev/icons?i=idea" alt="IntelliJ IDEA">
+                <p>IntelliJ IDEA</p>
+            </div>
+            <div class="card">
+                <img src="https://skillicons.dev/icons?i=visualstudio" alt="Visual Studio">
+                <p>Visual Studio</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Phần Giới thiệu -->
-    <div id="about" class="section" style="display: none;">
-        <h2>Giới thiệu</h2>
-        <p>Xin chào! Tôi là một người đam mê công nghệ và sáng tạo. Tôi yêu thích học hỏi và chia sẻ kiến thức.</p>
-    </div>
-
-    <!-- Phần Về Bản Thân Tôi -->
+    <!-- Phần Giới Thiệu Bản Thân -->
     <div id="profile" class="section" style="display: none;">
-        <h2>Về Bản Thân Tôi</h2>
-        <p>Tên tôi là Ali OgOi, tôi là một học sinh đam mê lập trình và công nghệ.</p>
+        <h2 class="section-title">Về Bản Thân Tôi</h2>
+        <p class="fade-in center">
+            ✉️ Bạn có thể liên hệ tại <a href="mailto:nguyntin2808@gmail.com">Đây</a><br>
+            🧠 Tôi đang học Javascript, Python, C++<br>
+            🤝 Kết nối với tôi trên Discord: **lifeisnotdaijoubu**<br>
+            🎉 <a href="https://linktr.ee/TienNguyennnm/">LinkTree</a><br>
+            🫧 Hoặc <a href="https://www.facebook.com/anhhhtienn/">Facebook</a>.
+        </p>
     </div>
 
     <!-- Phần Thành Tựu -->
     <div id="achievements" class="section" style="display: none;">
         <h2 class="section-title">Thành Tựu</h2>
         <p class="fade-in center">6/1/2024: Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
-        
-        <p class="fade-in center score-wrapper">
-            Đạt Được <span class="hidden-score">5.25 điểm</span>.
-        </p>
-
+        <p class="fade-in center">Đạt Được 5.25 điểm.</p>
         <div class="center">
             <a href="https://github.com/AliOgOi">
                 <img src="https://github-readme-stats.vercel.app/api?username=AliOgOi&theme=radical" alt="GitHub Stats">
@@ -159,15 +154,6 @@
                 document.getElementById(target).style.display = 'block';
             });
         });
-
-        // Hiệu ứng chạy qua lại cho các tab
-        let tabs = document.querySelectorAll('.tab-content');
-        let tabIndex = 0;
-        setInterval(() => {
-            tabs.forEach(tab => tab.style.display = 'none'); // Ẩn tất cả tab
-            tabs[tabIndex].style.display = 'block'; // Hiển thị tab hiện tại
-            tabIndex = (tabIndex + 1) % tabs.length; // Di chuyển đến tab tiếp theo
-        }, 5000); // Chuyển mỗi 5 giây
     </script>
 </body>
 </html>
