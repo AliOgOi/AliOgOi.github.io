@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="AliOgOi">
     <title>Trang Cá Nhân</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- CSS Reset and Styling -->
     <style>
         * {
             margin: 0;
@@ -30,32 +27,29 @@
             padding: 20px 0;
         }
 
-        header h1, footer p {
-            text-align: center;
-        }
-
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 10px 20px;
             background: #2b2d42;
+            padding: 15px 0;
         }
 
         .navbar ul {
-            display: flex;
             list-style: none;
+            display: flex;
+            padding: 0;
         }
 
         .navbar li {
-            margin: 0 15px;
+            margin: 0 20px;
         }
 
         .navbar a {
             text-decoration: none;
             color: white;
-            font-size: 16px;
-            padding: 8px 12px;
+            font-size: 18px;
+            padding: 10px 15px;
             transition: background-color 0.3s;
         }
 
@@ -82,90 +76,11 @@
 
         .card {
             background: white;
-            width: 30%;
+            width: 45%;
             margin: 10px;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .skills, .editors {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .skills img, .editors img {
-            margin: 10px;
-            width: 60px;
-            height: 60px;
-        }
-
-        .footer-links a {
-            color: #f1f1f1;
-            text-decoration: none;
-            margin: 5px 10px;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #EF233C;
-        }
-
-        .hidden-input {
-            display: none;
-        }
-
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 50%;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .testimonials {
-            background-color: #e9eff1;
-            padding: 40px;
-            margin-top: 20px;
         }
 
         .testimonial-card {
@@ -194,17 +109,27 @@
             color: #666;
         }
 
-        /* Login Form */
-        .login-form {
-            background: #fff;
-            padding: 30px;
-            max-width: 400px;
-            margin: 20px auto;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .footer-links a {
+            color: #f1f1f1;
+            text-decoration: none;
+            margin: 5px 10px;
+            transition: color 0.3s;
         }
 
-        .login-form input {
+        .footer-links a:hover {
+            color: #EF233C;
+        }
+
+        /* Style Form đăng bài */
+        .forum-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .forum-form input, .forum-form textarea {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -212,118 +137,171 @@
             border-radius: 5px;
         }
 
-        .login-form button {
-            background: #2b2d42;
+        .forum-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .forum-posts {
+            margin-top: 20px;
+        }
+
+        .post {
+            background: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .delete-btn {
+            background: #EF233C;
             color: white;
-            padding: 10px 15px;
+            padding: 5px 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-
-        .login-form button:hover {
-            background: #EF233C;
-        }
-
-        /* Thành Tựu Section */
-        .hidden-score {
             display: none;
         }
 
-        .score-wrapper:hover .hidden-score {
-            display: inline;
-        }
-
-        .hidden-score {
-            font-weight: bold;
-            color: #d9534f;
-        }
-
-        .score-wrapper:hover {
-            background-color: #f4f7fc;
-            transition: background-color 0.3s ease;
+        .delete-btn:hover {
+            background: #D00032;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>AliOgOi - Trang Cá Nhân</h1>
-        </div>
-    </header>
-
-    <!-- Navbar -->
     <div class="navbar">
-        <div class="container">
-            <h2 class="logo">AliOgOi</h2>
-            <ul>
-                <li><a href="#about">Giới Thiệu</a></li>
-                <li><a href="#skills">Kỹ Năng</a></li>
-                <li><a href="#projects">Dự Án</a></li>
-                <li><a href="#achievements">Thành Tựu</a></li>
-                <li><a href="#testimonials">Đánh Giá</a></li>
-                <li><a href="#login">Đăng Nhập</a></li>
-            </ul>
-        </div>
+        <ul>
+            <li><a href="#about">Giới Thiệu</a></li>
+            <li><a href="#achievements">Thành Tựu</a></li>
+            <li><a href="#testimonials">Đánh Giá</a></li>
+            <li><a href="#forum">Forum</a></li>
+        </ul>
     </div>
 
-    <!-- About Section -->
     <section id="about">
-        <div class="container">
-            <h2 class="section-title">Giới Thiệu</h2>
-            <div class="content">
-                <div class="card">
-                    <h3>Xin Chào!</h3>
-                    <p>Tôi là một người đam mê công nghệ và sáng tạo. Tôi yêu thích học hỏi và chia sẻ kiến thức.</p>
-                    <p>✉️ Bạn Có Thể Liên Hệ Với Tôi Tại Đây: <a href="mailto:nguyntin2808@gmail.com">nguyntin2808@gmail.com</a></p>
-                    <p>🧠 Tôi Đang Học: Js, Python, C++, AI.</p>
-                    <p>🤝 Liên Hệ Với Tôi Tại: lifeisnotdaijoubu</p>
-                    <p>🫧 Nếu Bạn Muốn Biết Thêm, Nhấp Vào Đây: <a href="https://AliOgOi.github.io">AliOgOi.github.io</a></p>
-                </div>
+        <h2 class="section-title">Giới Thiệu</h2>
+        <div class="content">
+            <div class="card">
+                <h3>Xin Chào!</h3>
+                <p>Tôi là một người đam mê công nghệ và sáng tạo. Tôi yêu thích học hỏi và chia sẻ kiến thức.</p>
+                <p>✉️ Bạn Có Thể Liên Hệ Với Tôi Tại Đây: <a href="mailto:nguyntin2808@gmail.com">nguyntin2808@gmail.com</a></p>
+                <p>🧠 Tôi Đang Học: Js, Python, C++, AI.</p>
+                <p>🤝 Liên Hệ Với Tôi Tại: lifeisnotdaijoubu</p>
+                <p>🫧 Nếu Bạn Muốn Biết Thêm, Nhấp Vào Đây: <a href="https://AliOgOi.github.io">AliOgOi.github.io</a></p>
             </div>
         </div>
     </section>
 
-    <!-- Achievements Section -->
     <section id="achievements">
-        <div class="container">
-            <h2 class="section-title">Thành Tựu</h2>
-            <div class="content">
-                <div class="card score-wrapper">
-                    <h3>6/1/2024: Thi HSG cấp Tỉnh môn Tin Học</h3>
-                    <p>Tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
-                    <p class="hidden-score">Đạt được 5.25 điểm.</p> <!-- Phần điểm số ẩn -->
-                </div>
+        <h2 class="section-title">Thành Tựu</h2>
+        <div class="content">
+            <div class="card">
+                <h3>6/1/2024: Thi HSG cấp Tỉnh môn Tin Học</h3>
+                <p>Tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
     <section id="testimonials">
-        <div class="container">
-            <h2 class="section-title">Đánh Giá</h2>
-            <div class="content">
-                <div class="testimonial-card">
-                    <img src="https://via.placeholder.com/100" alt="Testimonial">
-                    <h3>Nguyễn Văn A</h3>
-                    <p>"AliOgOi là một chuyên gia trong lĩnh vực công nghệ và sáng tạo!"</p>
-                </div>
-                <div class="testimonial-card">
-                    <img src="https://via.placeholder.com/100" alt="Testimonial">
-                    <h3>Trần Thị B</h3>
-                    <p>"Cảm ơn AliOgOi đã giúp tôi giải quyết vấn đề lập trình phức tạp."</p>
-                </div>
+        <h2 class="section-title">Đánh Giá</h2>
+        <div class="content">
+            <div class="testimonial-card">
+                <img src="https://via.placeholder.com/100" alt="Testimonial">
+                <h3>Nguyễn Văn A</h3>
+                <p>"AliOgOi là một chuyên gia trong lĩnh vực công nghệ và sáng tạo!"</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://via.placeholder.com/100" alt="Testimonial">
+                <h3>Trần Thị B</h3>
+                <p>"Cảm ơn AliOgOi đã giúp tôi giải quyết vấn đề lập trình phức tạp."</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section id="forum">
+        <h2 class="section-title">Forum</h2>
+        <!-- Form đăng bài -->
+        <div class="forum-form">
+            <input type="text" id="postTitle" placeholder="Tiêu đề bài viết">
+            <textarea id="postContent" rows="5" placeholder="Nội dung bài viết"></textarea>
+            <select id="avatarSelect">
+                <option value="https://via.placeholder.com/100">Avatar 1</option>
+                <option value="https://via.placeholder.com/100/0000FF">Avatar 2</option>
+                <option value="https://via.placeholder.com/100/FF6347">Avatar 3</option>
+            </select>
+            <button onclick="submitPost()">Đăng Bài</button>
+        </div>
+
+        <div class="forum-posts" id="forumPosts">
+            <!-- Các bài viết sẽ được hiển thị ở đây -->
+        </div>
+    </section>
+
     <footer>
         <div class="footer-links">
             <a href="#">Privacy</a> | <a href="#">Terms</a>
         </div>
         <p>&copy; 2024 AliOgOi</p>
     </footer>
+
+    <script>
+        const passwordHash = "2c6ee24b09816a6f14f95d1698b24ead"; // Mã hóa của Tudaida1
+        let posts = [];
+
+        function submitPost() {
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            const avatar = document.getElementById('avatarSelect').value;
+
+            if (!title || !content) {
+                alert("Vui lòng nhập tiêu đề và nội dung bài viết.");
+                return;
+            }
+
+            const postId = posts.length + 1;
+            posts.push({ id: postId, title, content, avatar });
+            displayPosts();
+            document.getElementById('postTitle').value = '';
+            document.getElementById('postContent').value = '';
+        }
+
+        function displayPosts() {
+            const forumPosts = document.getElementById('forumPosts');
+            forumPosts.innerHTML = '';
+
+            posts.forEach(post => {
+                const postDiv = document.createElement('div');
+                postDiv.classList.add('post');
+                postDiv.id = post.id;
+                postDiv.innerHTML = `
+                    <img src="${post.avatar}" alt="Avatar" style="width:50px; height:50px; border-radius:50%; margin-right:10px;">
+                    <h3>${post.title}</h3>
+                    <p>${post.content}</p>
+                    <button class="delete-btn" onclick="deletePost(${post.id})">Xóa Bài</button>
+                `;
+                forumPosts.appendChild(postDiv);
+            });
+        }
+
+        function deletePost(postId) {
+            const password = prompt('Nhập mật khẩu để xóa bài:');
+            if (md5(password) === passwordHash) {
+                posts = posts.filter(post => post.id !== postId);
+                displayPosts();
+            } else {
+                alert('Mật khẩu sai');
+            }
+        }
+
+        // Hàm mã hóa MD5
+        function md5(string) {
+            return CryptoJS.MD5(string).toString();
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1-crypto-js.js"></script>
 </body>
 </html>
