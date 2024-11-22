@@ -164,11 +164,14 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: none;
         }
 
         .delete-btn:hover {
             background: #D00032;
+        }
+
+        .delete-btn:disabled {
+            background: #ccc;
         }
     </style>
 </head>
@@ -224,7 +227,6 @@
 
     <section id="forum">
         <h2 class="section-title">Forum</h2>
-        <!-- Form đăng bài -->
         <div class="forum-form">
             <input type="text" id="postTitle" placeholder="Tiêu đề bài viết">
             <textarea id="postContent" rows="5" placeholder="Nội dung bài viết"></textarea>
@@ -236,9 +238,7 @@
             <button onclick="submitPost()">Đăng Bài</button>
         </div>
 
-        <div class="forum-posts" id="forumPosts">
-            <!-- Các bài viết sẽ được hiển thị ở đây -->
-        </div>
+        <div class="forum-posts" id="forumPosts"></div>
     </section>
 
     <footer>
@@ -248,8 +248,9 @@
         <p>&copy; 2024 AliOgOi</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1-crypto-js.js"></script>
     <script>
-        const passwordHash = "2c6ee24b09816a6f14f95d1698b24ead"; // Mã hóa của Tudaida1
+        const passwordHash = "2c6ee24b09816a6f14f95d1698b24ead"; // Mã hash của mật khẩu "1234"
         let posts = [];
 
         function submitPost() {
@@ -257,51 +258,44 @@
             const content = document.getElementById('postContent').value;
             const avatar = document.getElementById('avatarSelect').value;
 
-            if (!title || !content) {
-                alert("Vui lòng nhập tiêu đề và nội dung bài viết.");
-                return;
-            }
+            if (title && content) {
+                const post = {
+                    title,
+                    content,
+                    avatar,
+                    password: prompt("Nhập mật khẩu để xóa bài viết:") // Nhập mật khẩu khi muốn xóa bài
+                };
 
-            const postId = posts.length + 1;
-            posts.push({ id: postId, title, content, avatar });
-            displayPosts();
-            document.getElementById('postTitle').value = '';
-            document.getElementById('postContent').value = '';
+                posts.push(post);
+                renderPosts();
+            }
         }
 
-        function displayPosts() {
-            const forumPosts = document.getElementById('forumPosts');
-            forumPosts.innerHTML = '';
-
-            posts.forEach(post => {
-                const postDiv = document.createElement('div');
-                postDiv.classList.add('post');
-                postDiv.id = post.id;
-                postDiv.innerHTML = `
-                    <img src="${post.avatar}" alt="Avatar" style="width:50px; height:50px; border-radius:50%; margin-right:10px;">
+        function renderPosts() {
+            const postsContainer = document.getElementById('forumPosts');
+            postsContainer.innerHTML = '';
+            posts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                postElement.innerHTML = `
+                    <img src="${post.avatar}" alt="Avatar" width="50" height="50">
                     <h3>${post.title}</h3>
                     <p>${post.content}</p>
-                    <button class="delete-btn" onclick="deletePost(${post.id})">Xóa Bài</button>
+                    <button class="delete-btn" onclick="deletePost(${index})">Xóa Bài</button>
                 `;
-                forumPosts.appendChild(postDiv);
+                postsContainer.appendChild(postElement);
             });
         }
 
-        function deletePost(postId) {
-            const password = prompt('Nhập mật khẩu để xóa bài:');
-            if (md5(password) === passwordHash) {
-                posts = posts.filter(post => post.id !== postId);
-                displayPosts();
+        function deletePost(index) {
+            const inputPassword = prompt("Nhập mật khẩu để xóa bài viết:");
+            if (CryptoJS.MD5(inputPassword).toString() === passwordHash) {
+                posts.splice(index, 1);
+                renderPosts();
             } else {
-                alert('Mật khẩu sai');
+                alert("Mật khẩu không chính xác!");
             }
         }
-
-        // Hàm mã hóa MD5
-        function md5(string) {
-            return CryptoJS.MD5(string).toString();
-        }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1-crypto-js.js"></script>
 </body>
 </html>
