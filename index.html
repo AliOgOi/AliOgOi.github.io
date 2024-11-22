@@ -7,14 +7,16 @@
 
     <!-- Nhúng Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    
+
     <style>
         /* General Styling */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f4f4f4;
+            background-image: url('Bg.png'); /* Chèn hình nền Bg.png */
+            background-size: cover;
+            background-position: center;
         }
 
         /* Menu Bar */
@@ -61,59 +63,19 @@
             color: white;
         }
 
-        /* Dropdown Menu */
-        .nav-menu .dropdown {
-            position: relative;
-        }
-
-        .nav-menu .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #2B2D42;
-            padding: 10px 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            min-width: 180px;
-            z-index: 10;
-        }
-
-        .nav-menu .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            padding: 8px 15px;
-            text-decoration: none;
-            color: white;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #EF233C;
-        }
-
         /* Phần Nội Dung */
         #about, #profile, #achievements, #products {
             padding: 20px;
             display: none; /* Mặc định ẩn tất cả các phần */
         }
 
-        /* Tab content */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 300px;
-            font-size: 18px;
-            transition: all 1s ease;
+        /* Hiển thị điểm khi hover vào */
+        .hidden-score {
+            display: none;
         }
 
-        .tabs div {
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            margin: 0 10px;
+        .score-wrapper:hover .hidden-score {
+            display: inline;
         }
 
         /* Giới thiệu phần nội dung */
@@ -161,6 +123,27 @@
             background-color: #EF233C;
             color: white;
         }
+
+        /* Hiệu ứng cho hình ảnh */
+        .preview-img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Các biểu tượng kỹ năng */
+        .skills, .editors {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .skills img, .editors img {
+            width: 60px;
+            height: auto;
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
@@ -183,6 +166,26 @@
     <div id="about" class="section">
         <h2 class="section-title">Giới thiệu</h2>
         <p>Xin chào! Tôi là một người đam mê công nghệ và sáng tạo. Tôi yêu thích học hỏi và chia sẻ kiến thức.</p>
+
+        <p><b>✉️ Bạn Có Thể Liên Hệ Với Tôi Tại Đây:</b> <a href="mailto:nguyntin2808@gmail.com">nguyntin2808@gmail.com</a></p>
+        <p><b>🧠 Tôi Đang Học:</b> Js, Python, C++, AI. <br>🤝 Liên Hệ Với Tôi Tại: <a href="https://lifeisnotdaijoubu" target="_blank">lifeisnotdaijoubu</a></p>
+
+        <p><b>🫧 Nếu Bạn Muốn Biết Thêm, Nhấp Vào Đây:</b> <a href="https://AliOgOi.github.io" target="_blank">AliOgOi.github.io</a></p>
+        <p><b>🫧 Hoặc nếu có thắc mắc gì hãy liên hệ tại:</b> <a href="https://www.facebook.com/anhhhtienn/" target="_blank">Facebook của tôi</a></p>
+
+        <h3>Ngôn Ngữ Lập Trình:</h3>
+        <div class="skills">
+            <a href="#" target="_blank">
+                <img src="https://skillicons.dev/icons?i=nodejs,js,cpp,bots,ai&perline=6" alt="Programming Languages">
+            </a>
+        </div>
+
+        <h3>Phần Mềm Đang Sử Dụng:</h3>
+        <div class="editors">
+            <a href="#" target="_blank">
+                <img src="https://skillicons.dev/icons?i=vscode,visualstudio&perline=6" alt="Code Editors">
+            </a>
+        </div>
     </div>
 
     <!-- Phần Về Bản Thân Tôi -->
@@ -196,38 +199,58 @@
         <h2 class="section-title">Thành Tựu</h2>
         <p class="fade-in">6/1/2024: Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
         <p class="fade-in">Đạt được 5.25 điểm.</p>
+        <p class="fade-in score-wrapper">
+            Đạt được <span class="hidden-score">5.25 điểm</span>.
+        </p>
+
+        <h2 align="center">GitHub Stats</h2>
+        <div align="center">
+            <a href="https://github.com/AliOgOi" target="_blank">
+                <img src="https://github-readme-stats.vercel.app/api?username=AliOgOi&theme=radical" alt="GitHub Stats">
+            </a>
+            <a href="https://github.com/AliOgOi" target="_blank">
+                <img src="https://github-readme-streak-stats.herokuapp.com/?user=AliOgOi&stroke=64748b&background=171717&ring=64748b&fire=64748b&currStreakNum=64748b&currStreakLabel=64748b&sideNums=64748b&sideLabels=64748b&dates=64748b&hide_border=true" alt="GitHub Streak">
+            </a>
+        </div>
     </div>
 
     <!-- Phần Sản Phẩm -->
     <div id="products" class="section">
         <h2 class="section-title">Sản Phẩm</h2>
         <div class="product-preview">
-            <a href="https://aliogoi.github.io/" target="_blank">Preview Trang Web Cá Nhân</a>
-            <a href="https://github.com/AliOgOi" target="_blank">Preview GitHub - AliOgOi</a>
-            <a href="https://github.com/AliOgOi/botchatmessenger" target="_blank">Preview Bot Chat Messenger</a>
+            <a href="https://aliogoi.github.io/" target="_blank">
+                <img src="https://via.placeholder.com/300x150" class="preview-img" alt="Preview Website">
+                <p>Trang Web của tôi</p>
+            </a>
+            <a href="https://github.com/AliOgOi" target="_blank">
+                <img src="https://via.placeholder.com/300x150" class="preview-img" alt="GitHub Preview">
+                <p>GitHub của tôi</p>
+            </a>
+            <a href="https://github.com/AliOgOi/botchatmessenger" target="_blank">
+                <img src="https://via.placeholder.com/300x150" class="preview-img" alt="Bot Chat Messenger">
+                <p>Bot Chat Messenger</p>
+            </a>
         </div>
     </div>
 
     <script>
-        // Xử lý menu toggle và chuyển đổi nội dung
+        // Xử lý menu toggle
         const menuItems = document.querySelectorAll('.nav-menu a');
         const sections = document.querySelectorAll('.section');
 
-        // Khi nhấn vào menu item, hiển thị phần tương ứng và ẩn phần còn lại
         menuItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = e.target.getAttribute('data-target');
+            item.addEventListener('click', function() {
+                const target = item.getAttribute('data-target');
 
-                // Ẩn tất cả các phần
+                // Ẩn tất cả các nội dung
                 sections.forEach(section => section.style.display = 'none');
-
-                // Hiện phần được chọn
+                
+                // Hiện nội dung mục đã chọn
                 document.getElementById(target).style.display = 'block';
             });
         });
 
-        // Mặc định hiển thị phần "Giới thiệu" khi tải trang
+        // Mặc định hiển thị phần đầu tiên
         document.getElementById('about').style.display = 'block';
     </script>
 </body>
