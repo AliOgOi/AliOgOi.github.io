@@ -169,10 +169,8 @@
 
         <p><b>✉️ Bạn Có Thể Liên Hệ Với Tôi Tại Đây:</b> <a href="mailto:nguyntin2808@gmail.com">nguyntin2808@gmail.com</a></p>
         <p><b>🧠 Tôi Đang Học:</b> Js, Python, C++, AI. <br>🤝 Liên Hệ Với Tôi Tại: <a href="https://lifeisnotdaijoubu" target="_blank">lifeisnotdaijoubu</a></p>
-
         <p><b>🫧 Nếu Bạn Muốn Biết Thêm, Nhấp Vào Đây:</b> <a href="https://AliOgOi.github.io" target="_blank">AliOgOi.github.io</a></p>
         <p><b>🫧 Hoặc nếu có thắc mắc gì hãy liên hệ tại:</b> <a href="https://www.facebook.com/anhhhtienn/" target="_blank">Facebook của tôi</a></p>
-
         <h3>Ngôn Ngữ Lập Trình:</h3>
         <div class="skills">
             <a href="#" target="_blank">
@@ -191,14 +189,13 @@
     <!-- Phần Về Bản Thân Tôi -->
     <div id="profile" class="section">
         <h2 class="section-title">Về Bản Thân Tôi</h2>
-        <p>Tên tôi là Ali OgOi, tôi là một sinh viên đam mê lập trình và công nghệ. Hiện tôi đang theo học tại trường Đại học ABC.</p>
+        <p>Tên tôi là Ali OgOi, tôi là một học sinh đam mê lập trình và công nghệ. .</p>
     </div>
 
     <!-- Phần Thành Tựu -->
     <div id="achievements" class="section">
         <h2 class="section-title">Thành Tựu</h2>
         <p class="fade-in">6/1/2024: Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
-        <p class="fade-in">Đạt được 5.25 điểm.</p>
         <p class="fade-in score-wrapper">
             Đạt được <span class="hidden-score">5.25 điểm</span>.
         </p>
@@ -241,16 +238,10 @@
         menuItems.forEach(item => {
             item.addEventListener('click', function() {
                 const target = item.getAttribute('data-target');
-
-                // Ẩn tất cả các nội dung
                 sections.forEach(section => section.style.display = 'none');
-                
-                // Hiện nội dung mục đã chọn
                 document.getElementById(target).style.display = 'block';
             });
         });
-
-        // Mặc định hiển thị phần đầu tiên
         document.getElementById('about').style.display = 'block';
     </script>
 </body>
