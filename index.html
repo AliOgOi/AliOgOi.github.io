@@ -224,6 +224,25 @@
         .login-form button:hover {
             background: #EF233C;
         }
+
+        /* Thành Tựu Section */
+        .hidden-score {
+            display: none;
+        }
+
+        .score-wrapper:hover .hidden-score {
+            display: inline;
+        }
+
+        .hidden-score {
+            font-weight: bold;
+            color: #d9534f;
+        }
+
+        .score-wrapper:hover {
+            background-color: #f4f7fc;
+            transition: background-color 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -271,9 +290,10 @@
         <div class="container">
             <h2 class="section-title">Thành Tựu</h2>
             <div class="content">
-                <div class="card">
+                <div class="card score-wrapper">
                     <h3>6/1/2024: Thi HSG cấp Tỉnh môn Tin Học</h3>
-                    <p>Tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa. Đạt được 5.25 điểm.</p>
+                    <p>Tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
+                    <p class="hidden-score">Đạt được 5.25 điểm.</p> <!-- Phần điểm số ẩn -->
                 </div>
             </div>
         </div>
@@ -285,44 +305,25 @@
             <h2 class="section-title">Đánh Giá</h2>
             <div class="content">
                 <div class="testimonial-card">
-                    <h3>Người Dùng 1</h3>
-                    <p>"AliOgOi là một nhà phát triển tuyệt vời, giúp tôi giải quyết rất nhiều vấn đề trong công việc."</p>
+                    <img src="https://via.placeholder.com/100" alt="Testimonial">
+                    <h3>Nguyễn Văn A</h3>
+                    <p>"AliOgOi là một chuyên gia trong lĩnh vực công nghệ và sáng tạo!"</p>
                 </div>
                 <div class="testimonial-card">
-                    <h3>Người Dùng 2</h3>
-                    <p>"Sản phẩm rất chất lượng và tôi luôn hài lòng khi làm việc với AliOgOi."</p>
+                    <img src="https://via.placeholder.com/100" alt="Testimonial">
+                    <h3>Trần Thị B</h3>
+                    <p>"Cảm ơn AliOgOi đã giúp tôi giải quyết vấn đề lập trình phức tạp."</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Login Section -->
-    <section id="login">
-        <div class="container">
-            <h2 class="section-title">Đăng Nhập</h2>
-            <div class="login-form">
-                <input type="email" placeholder="Email" id="email">
-                <input type="password" placeholder="Mật khẩu" id="password">
-                <button onclick="login()">Đăng Nhập</button>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>2024 AliOgOi | <span class="footer-links"><a href="mailto:nguyntin2808@gmail.com">Email</a> | <a href="#">LinkedIn</a> | <a href="#">Twitter</a></span></p>
+        <div class="footer-links">
+            <a href="#">Privacy</a> | <a href="#">Terms</a>
+        </div>
+        <p>&copy; 2024 AliOgOi</p>
     </footer>
-
-    <script>
-        function login() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            if (email && password) {
-                alert("Đăng nhập thành công!");
-            } else {
-                alert("Vui lòng điền đầy đủ thông tin!");
-            }
-        }
-    </script>
 </body>
 </html>
