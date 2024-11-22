@@ -95,6 +95,7 @@
         /* Phần Nội Dung */
         #about, #profile, #achievements, #products {
             padding: 20px;
+            display: none; /* Mặc định ẩn tất cả các phần */
         }
 
         /* Tab content */
@@ -170,35 +171,35 @@
         </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="#">Giới thiệu</a></li>
-                <li><a href="#">Về Bản Thân Tôi</a></li>
-                <li><a href="#">Thành Tựu</a></li>
-                <li><a href="#">Sản Phẩm</a></li>
+                <li><a href="#" data-target="about">Giới thiệu</a></li>
+                <li><a href="#" data-target="profile">Về Bản Thân Tôi</a></li>
+                <li><a href="#" data-target="achievements">Thành Tựu</a></li>
+                <li><a href="#" data-target="products">Sản Phẩm</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Phần Giới thiệu -->
-    <div id="about" class="section" style="display: none;">
+    <div id="about" class="section">
         <h2 class="section-title">Giới thiệu</h2>
         <p>Xin chào! Tôi là một người đam mê công nghệ và sáng tạo. Tôi yêu thích học hỏi và chia sẻ kiến thức.</p>
     </div>
 
     <!-- Phần Về Bản Thân Tôi -->
-    <div id="profile" class="section" style="display: none;">
+    <div id="profile" class="section">
         <h2 class="section-title">Về Bản Thân Tôi</h2>
         <p>Tên tôi là Ali OgOi, tôi là một sinh viên đam mê lập trình và công nghệ. Hiện tôi đang theo học tại trường Đại học ABC.</p>
     </div>
 
     <!-- Phần Thành Tựu -->
-    <div id="achievements" class="section" style="display: none;">
+    <div id="achievements" class="section">
         <h2 class="section-title">Thành Tựu</h2>
         <p class="fade-in">6/1/2024: Thi HSG cấp Tỉnh môn Tin Học tại trường THPT Lê Quý Đôn - Tân Mai - TP Biên Hòa.</p>
         <p class="fade-in">Đạt được 5.25 điểm.</p>
     </div>
 
     <!-- Phần Sản Phẩm -->
-    <div id="products" class="section" style="display: none;">
+    <div id="products" class="section">
         <h2 class="section-title">Sản Phẩm</h2>
         <div class="product-preview">
             <a href="https://aliogoi.github.io/" target="_blank">Preview Trang Web Cá Nhân</a>
@@ -208,22 +209,26 @@
     </div>
 
     <script>
-        // Xử lý menu toggle
-        const sections = document.querySelectorAll('.section');
+        // Xử lý menu toggle và chuyển đổi nội dung
         const menuItems = document.querySelectorAll('.nav-menu a');
+        const sections = document.querySelectorAll('.section');
 
+        // Khi nhấn vào menu item, hiển thị phần tương ứng và ẩn phần còn lại
         menuItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                const target = e.target.textContent.trim().toLowerCase().replace(' ', '');
+                const target = e.target.getAttribute('data-target');
 
-                // Ẩn tất cả các phần nội dung
+                // Ẩn tất cả các phần
                 sections.forEach(section => section.style.display = 'none');
 
-                // Hiện nội dung phù hợp
+                // Hiện phần được chọn
                 document.getElementById(target).style.display = 'block';
             });
         });
+
+        // Mặc định hiển thị phần "Giới thiệu" khi tải trang
+        document.getElementById('about').style.display = 'block';
     </script>
 </body>
 </html>
