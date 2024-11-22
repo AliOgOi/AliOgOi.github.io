@@ -21,10 +21,29 @@
             overflow-x: hidden;
         }
 
-        header, footer {
+        header {
             background: #2b2d42;
             color: white;
             padding: 20px 0;
+            position: relative;
+        }
+
+        /* Hamburger menu icon */
+        .hamburger {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 6px 0;
+            transition: 0.4s;
         }
 
         .navbar {
@@ -56,6 +75,39 @@
         .navbar a:hover {
             background: #EF233C;
             border-radius: 5px;
+        }
+
+        /* Responsive Design for Mobile View */
+        @media (max-width: 768px) {
+            .navbar {
+                display: none;
+                flex-direction: column;
+                background-color: #2b2d42;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 10px;
+            }
+
+            .navbar.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .navbar li {
+                margin: 10px 0;
+            }
+
+            .navbar a {
+                font-size: 20px;
+                padding: 12px 16px;
+                text-align: center;
+                display: block;
+            }
         }
 
         section {
@@ -176,14 +228,21 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <ul>
-            <li><a href="#about">Giới Thiệu</a></li>
-            <li><a href="#achievements">Thành Tựu</a></li>
-            <li><a href="#testimonials">Đánh Giá</a></li>
-            <li><a href="#forum">Forum</a></li>
-        </ul>
-    </div>
+    <header>
+        <div class="hamburger" onclick="toggleNavbar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#about">Giới Thiệu</a></li>
+                <li><a href="#achievements">Thành Tựu</a></li>
+                <li><a href="#testimonials">Đánh Giá</a></li>
+                <li><a href="#forum">Forum</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <section id="about">
         <h2 class="section-title">Giới Thiệu</h2>
@@ -228,74 +287,81 @@
     <section id="forum">
         <h2 class="section-title">Forum</h2>
         <div class="forum-form">
+            <h3>Đăng bài mới</h3>
             <input type="text" id="postTitle" placeholder="Tiêu đề bài viết">
             <textarea id="postContent" rows="5" placeholder="Nội dung bài viết"></textarea>
             <select id="avatarSelect">
-                <option value="https://via.placeholder.com/100">Avatar 1</option>
-                <option value="https://via.placeholder.com/100/0000FF">Avatar 2</option>
-                <option value="https://via.placeholder.com/100/FF6347">Avatar 3</option>
+                <option value="https://via.placeholder.com/50">Avatar 1</option>
+                <option value="https://via.placeholder.com/50/ff0000">Avatar 2</option>
+                <option value="https://via.placeholder.com/50/00ff00">Avatar 3</option>
             </select>
             <button onclick="submitPost()">Đăng Bài</button>
         </div>
 
-        <div class="forum-posts" id="forumPosts"></div>
+        <div id="forumPosts" class="forum-posts"></div>
     </section>
 
-    <footer>
-        <div class="footer-links">
-            <a href="#">Privacy</a> | <a href="#">Terms</a>
-        </div>
-        <p>&copy; 2024 AliOgOi</p>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1-crypto-js.js"></script>
     <script>
-        const passwordHash = "2c6ee24b09816a6f14f95d1698b24ead"; // Mã hash của mật khẩu "1234"
-        let posts = [];
+        // Function to toggle the navbar on/off for mobile
+        function toggleNavbar() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('active');
+        }
+
+        // Example forum post logic (simplified)
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        const passwordHash = "5f4dcc3b5aa765d61d8327deb882cf99"; // MD5 hash for "password"
 
         function submitPost() {
             const title = document.getElementById('postTitle').value;
             const content = document.getElementById('postContent').value;
             const avatar = document.getElementById('avatarSelect').value;
 
-            if (title && content) {
-                const post = {
-                    title,
-                    content,
-                    avatar,
-                    password: prompt("Nhập mật khẩu để xóa bài viết:") // Nhập mật khẩu khi muốn xóa bài
-                };
-
-                posts.push(post);
-                renderPosts();
+            const enteredPassword = prompt("Nhập mật khẩu:");
+            if (CryptoJS.MD5(enteredPassword).toString() !== passwordHash) {
+                alert("Mật khẩu không đúng!");
+                return;
             }
+
+            if (!title || !content) {
+                alert("Vui lòng điền đầy đủ tiêu đề và nội dung bài viết!");
+                return;
+            }
+
+            const post = { title, content, avatar, id: Date.now() };
+            posts.push(post);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
+            clearForm();
         }
 
-        function renderPosts() {
-            const postsContainer = document.getElementById('forumPosts');
-            postsContainer.innerHTML = '';
-            posts.forEach((post, index) => {
-                const postElement = document.createElement('div');
-                postElement.classList.add('post');
-                postElement.innerHTML = `
-                    <img src="${post.avatar}" alt="Avatar" width="50" height="50">
-                    <h3>${post.title}</h3>
+        function displayPosts() {
+            const forumPostsDiv = document.getElementById('forumPosts');
+            forumPostsDiv.innerHTML = '';
+            posts.forEach(post => {
+                const postDiv = document.createElement('div');
+                postDiv.className = 'post';
+                postDiv.innerHTML = `
+                    <div><img src="${post.avatar}" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%;">${post.title}</div>
                     <p>${post.content}</p>
-                    <button class="delete-btn" onclick="deletePost(${index})">Xóa Bài</button>
+                    <button class="delete-btn" onclick="deletePost(${post.id})">Xóa</button>
                 `;
-                postsContainer.appendChild(postElement);
+                forumPostsDiv.appendChild(postDiv);
             });
         }
 
-        function deletePost(index) {
-            const inputPassword = prompt("Nhập mật khẩu để xóa bài viết:");
-            if (CryptoJS.MD5(inputPassword).toString() === passwordHash) {
-                posts.splice(index, 1);
-                renderPosts();
-            } else {
-                alert("Mật khẩu không chính xác!");
-            }
+        function deletePost(postId) {
+            posts = posts.filter(post => post.id !== postId);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
         }
+
+        function clearForm() {
+            document.getElementById('postTitle').value = '';
+            document.getElementById('postContent').value = '';
+        }
+
+        displayPosts();
     </script>
 </body>
 </html>
