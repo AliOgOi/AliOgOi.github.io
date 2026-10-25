@@ -1,60 +1,192 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-h1, h2, h3 {
-    font-family: 'Lora', serif;
-    font-style: italic;
-}
-.menu {
-    font-family: 'Courier New', monospace;
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-bottom: 2px solid #ddd;
-}
-.menu ul {
-    list-style-type: none;
-    padding: 0;
-    display: none; 
-}
-.menu ul.active {
-    display: block; 
-}
-.menu ul li {
-    margin: 5px 0;
-}
-.menu ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-#about, #profile, #achievements {
-    padding: 20px;
-}
-.center {
-    text-align: center;
-}
-.fade-in {
-    animation: fadeIn 2s;
-}
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-.hidden-score {
-    display: none;
-}
-.score-wrapper:hover .hidden-score,
-.score-wrapper:active .hidden-score {
-    display: inline; 
+:root {
+    --primary-color: #003366; 
+    --secondary-color: #005b9f;
+    --accent-color: #ff9900;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --danger-color: #b71c1c;
+    --success-color: #388e3c;
+    --card-bg: #ffffff;
 }
 
-.hidden-score {
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section { padding: 60px 0; }
+.bg-light { background-color: #fff; }
+
+h1, h2, h3 { color: var(--primary-color); }
+.section-title { text-align: center; margin-bottom: 40px; font-size: 2em; text-transform: uppercase; }
+
+.navbar { background-color: var(--primary-color); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.nav-brand { font-size: 1.5em; font-weight: bold; }
+.menu-btn { font-size: 1.5em; cursor: pointer; }
+
+.sidebar { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background-color: white; box-shadow: -2px 0 10px rgba(0,0,0,0.1); transition: 0.3s; z-index: 1001; padding: 20px; }
+.sidebar.active { right: 0; }
+.close-btn { text-align: right; font-size: 1.5em; cursor: pointer; margin-bottom: 20px; color: var(--text-color); }
+.sidebar ul { list-style: none; }
+.sidebar ul li { margin-bottom: 15px; }
+.sidebar ul li a { text-decoration: none; color: var(--primary-color); font-weight: 600; font-size: 1.1em; display: block; padding: 10px; border-radius: 5px; transition: 0.2s; }
+.sidebar ul li a:hover { background-color: #f0f0f0; }
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; }
+.overlay.active { display: block; }
+
+.hero-section { background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('https://tuyensinh.hcmus.edu.vn/wp-content/uploads/2022/03/Toa-nha-I-1.jpg') center/cover; color: white; text-align: center; padding: 100px 20px; }
+.hero-section h1 { color: white; font-size: 3em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+.hero-section p { font-size: 1.2em; max-width: 600px; margin: 0 auto 30px; }
+
+.btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.2s; }
+.btn-primary { background-color: var(--accent-color); color: white; }
+.btn-primary:hover { background-color: #e68a00; }
+.btn-outline { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+.btn-outline:hover { background-color: var(--primary-color); color: white; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+.card { background: var(--card-bg); padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--secondary-color); }
+.card h3 { margin-bottom: 15px; }
+
+.tabs { display: flex; justify-content: center; margin-bottom: 30px; gap: 10px; }
+.tab-btn { padding: 10px 20px; background: #eee; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+.tab-btn.active { background: var(--primary-color); color: white; }
+.tab-content { display: none; animation: fadeIn 0.5s; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.campus-card { display: flex; flex-wrap: wrap; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.campus-card img { width: 100%; max-width: 500px; object-fit: cover; }
+.campus-info { padding: 30px; flex: 1; min-width: 300px; }
+.campus-features { list-style: none; margin-top: 20px; }
+.campus-features li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.campus-features i { color: var(--success-color); }
+
+.calculator-container { display: flex; flex-wrap: wrap; gap: 30px; }
+.calc-form { flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.calc-results { flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-left: 5px solid var(--primary-color); }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9em; }
+.form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+.subject-row { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; margin-bottom: 10px; align-items: center; }
+.subj-name { font-weight: 600; background: #f0f0f0; padding: 10px; border-radius: 5px; text-align: center; font-size: 0.9em;}
+.subject-row input, .subject-row select { padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+.final-score-box { background: #e3f2fd; padding: 20px; border-radius: 10px; text-align: center; margin-top: 20px; }
+.big-score { font-size: 3em; font-weight: bold; color: var(--primary-color); }
+.highlight { color: var(--danger-color); font-weight: bold; }
+
+.rec-item { padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 5px solid #ccc; background: #f9f9f9; }
+.rec-item.safe { border-left-color: var(--success-color); }
+.rec-item.dream { border-left-color: var(--accent-color); }
+.rec-item.challenge { border-left-color: var(--danger-color); }
+
+.card-generator { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; justify-content: center; }
+.card-form { flex: 1; min-width: 300px; max-width: 400px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.card-preview { flex: 1; min-width: 350px; display: flex; justify-content: center; overflow: hidden; padding: 20px;}
+.file-input { padding: 8px; border: 1px dashed #ccc; width: 100%; border-radius: 5px; cursor: pointer; }
+
+.real-id-card {
+    width: 480px;
+    height: 303px; 
+    background-color: #ffffff;
+    border-radius: 14px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+}
+.card-wave-bg {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 60px;
+    z-index: 1;
+}
+.card-wave-bg svg { width: 100%; height: 100%; display: block; }
+.card-website {
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    color: white;
+    font-size: 11px;
+    font-style: italic;
+    z-index: 2;
+}
+.card-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    padding: 15px 20px;
+    height: 100%;
+}
+
+.card-left-col {
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.khtn-logo { width: 55px; margin-bottom: 10px; margin-top: 5px; }
+.photo-box {
+    width: 85px;
+    height: 115px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.photo-box img { width: 100%; height: 100%; object-fit: cover; }
+.card-expiry-text {
+    font-size: 10px;
     font-weight: bold;
-    color: #d9534f;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.card-right-col {
+    flex: 1;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.card-header-titles {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.title-vnu { font-size: 11px; font-weight: bold; margin-bottom: 2px; }
+.title-hcmus { font-size: 13px; font-weight: 900; margin-bottom: 5px; }
+.title-card { font-size: 18px; font-weight: 900; color: #b71c1c; }
+.student-name-bold {
+    font-size: 16px;
+    font-weight: 900;
+    color: #003366;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.student-info-table { font-size: 11px; font-weight: bold; line-height: 1.8; }
+.info-line { display: flex; align-items: center; }
+.info-line .label { width: 55px; }
+.info-line .colon { width: 10px; text-align: center; }
+.info-line .value { flex: 1; }
+.label-mssv { margin-left: 10px; }
+.barcode-font {
+    font-family: 'Libre Barcode 39', cursive;
+    font-size: 38px;
+    margin-top: 5px;
+    color: #000;
+}
+
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+.modal-content { background-color: #fefefe; margin: 10% auto; padding: 30px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; position: relative; }
+.close-modal { color: #aaa; position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close-modal:hover { color: black; }
+
+footer { background: var(--primary-color); color: white; padding: 40px 0; }
+footer h2 { color: var(--accent-color); margin-bottom: 10px; }
+
+@media(max-width: 768px) {
+    .subject-row { grid-template-columns: 1fr; gap: 5px; margin-bottom: 15px; }
+    .card-generator { flex-direction: column; align-items: center; }
 }
